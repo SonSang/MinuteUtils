@@ -140,7 +140,7 @@ namespace MN {
 		
 		// Turn [ x ] into equivalent value that is in [ 0, PI20 ).
 		inline static Real regularize(Real x) noexcept {
-			int nom = x / PI20;
+			int nom = (int)(x / PI20);
 			if (x < 0)
 				nom -= 1;
 			return x - (nom * PI20);
@@ -349,7 +349,7 @@ namespace MN {
 			return diff.lensq();
 		}
 		// Normalize this vector into unit vector
-		inline void normalize() noexcept {
+		inline void normalize() {
 			auto length = len();
 			if(length == 0)
 				throw(std::runtime_error("Cannot normalize zero vector"));
@@ -472,7 +472,7 @@ namespace MN {
 			return diff.lensq();
 		}
 		// Normalize this vector into unit vector
-		inline void normalize() noexcept {
+		inline void normalize() {
 			auto length = len();
 			if (length == 0)
 				throw(std::runtime_error("Cannot normalize zero vector"));
@@ -836,8 +836,8 @@ namespace MN {
 			bin.degree = degree;
 			bin.N.resize(order * order);
 
-			for (size_t n = 0; n < order; n++) {
-				for (size_t i = 0; i <= n; i++) {
+			for (int n = 0; n < order; n++) {
+				for (int i = 0; i <= n; i++) {
 					if (i == 0 || i == n) bin.N[bin.index(n, i)] = 1.0;
 					else bin.N[bin.index(n, i)] = bin.N[bin.index(n - 1, i - 1)] + bin.N[bin.index(n - 1, i)];
 				}
@@ -860,16 +860,16 @@ namespace MN {
 
 	// Check if [ val ] is between [ a ] and [ b ]
 	// @include : Whether or not to include [ a ] and [ b ] for test
-	bool isbet(Real a, Real b, Real val, bool include = true) {
+	inline bool isbet(Real a, Real b, Real val, bool include = true) {
 		Real det = (val - a) * (val - b);
 		if (det > 0) return false;
 		else if (det < 0) return true;
 		else return include;	// det == 0
 	}
-	Real toRadian(Real angle) {
+	inline Real toRadian(Real angle) {
 		return (angle / 180.0) * PI;
 	}
-	Real toAngle(Real radian) {
+	inline Real toAngle(Real radian) {
 		return (radian / PI) * 180.0;
 	}
 }
