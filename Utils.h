@@ -95,14 +95,14 @@ namespace MN {
 	};
 	class Domain2 {
 	public:
-		Domain a;
-		Domain b;
+		Domain a = Domain::create(0, 0);
+		Domain b = Domain::create(0, 0);
 	};
 	class Domain3 {
 	public:
-		Domain a;
-		Domain b;
-		Domain c;
+		Domain a = Domain::create(0, 0);
+		Domain b = Domain::create(0, 0);
+		Domain c = Domain::create(0, 0);
 	};
 
 	// piDomain : Domain whose width does not exceed 2 * PI
