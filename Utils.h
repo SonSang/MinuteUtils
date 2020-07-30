@@ -86,10 +86,10 @@ namespace MN {
 			return create(b, e);
 		}
 		// Domain Equality
-		inline virtual bool operator==(const Domain& domain) {
+		inline virtual bool operator==(const Domain& domain) const {
 			return (beg() == domain.beg() && end() == domain.end());
 		}
-		inline virtual bool operator!=(const Domain& domain) {
+		inline virtual bool operator!=(const Domain& domain) const {
 			return !(*this == domain);
 		}
 	};
