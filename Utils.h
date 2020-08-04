@@ -11,6 +11,7 @@
 #include <array>
 #include <utility>
 #include <limits>
+#include <stdexcept>
 
 namespace MN {
 	using Real = double;	// Adjust to your taste...
