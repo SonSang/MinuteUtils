@@ -33,9 +33,12 @@ namespace MN {
 	//          Must be initialized with [a, b] value that [ b ] is not smaller than [ a ]
 	class Domain {
 	protected:
-		Domain() = default;
 		Real2 dat;
 	public:
+		Domain() {
+			dat.first = 0;
+			dat.second = 0;
+		}
 		// Set this domain with given values
 		// [ b ] must not be smaller than [ a ]
 		inline virtual void set(Real a, Real b) {
@@ -475,7 +478,8 @@ namespace MN {
 		inline void normalize() {
 			auto length = len();
 			if (length == 0)
-				throw(std::runtime_error("Cannot normalize zero vector"));
+				return;
+				//throw(std::runtime_error("Cannot normalize zero vector"));
 			(*this) /= length;
 		}
 
