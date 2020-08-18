@@ -115,6 +115,12 @@ namespace MN {
 		piDomain() = default;
 		Real2 regular;	// Regularized domain e.g. [-30, 30] ===> [330, 30] (in angle)
 	public:
+		piDomain() {
+			dat.first = 0;
+			dat.second = 0;
+			regular.first = 0;
+			regular.second = 0;
+		}
 		// Set this pi domain with given values
 		// [ b ] must not be smaller than [ a ] and must be smaller than [ a + 2 * PI ]
 		inline virtual void set(Real a, Real b) {
