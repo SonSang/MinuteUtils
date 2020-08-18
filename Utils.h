@@ -112,7 +112,6 @@ namespace MN {
 	// piDomain : Domain whose width does not exceed 2 * PI
 	class piDomain : public Domain {
 	private:
-		piDomain() = default;
 		Real2 regular;	// Regularized domain e.g. [-30, 30] ===> [330, 30] (in angle)
 	public:
 		piDomain() {
