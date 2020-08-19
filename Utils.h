@@ -280,14 +280,52 @@ namespace MN {
 				}
 			}
 		}
-		// @TODO : Get cos, sin min max value of this domain
+		// Get cos, sin min max value of this domain
 		inline void minmaxCos(Real& min, Real& max) const noexcept {
-			min = -1;
-			max = 1;
+			bool hasZero = has(0);
+			bool hasPi = has(PI);
+			if (hasZero && hasPi) {
+				min = -1;
+				max = 1;
+			}
+			else {
+				Real t0 = cos(beg()), t1 = cos(end());
+				if (hasZero) {
+					min = (t0 < t1 ? t0 : t1);
+					max = 1;
+				}
+				else if (hasPi) {
+					min = -1;
+					max = (t0 > t1 ? t0 : t1);
+				}
+				else {
+					min = (t0 < t1 ? t0 : t1);
+					max = (t0 > t1 ? t0 : t1);
+				}
+			}
 		}
 		inline void minmaxSin(Real& min, Real& max) const noexcept {
-			min = -1;
-			max = 1;
+			bool hasPI05 = has(PI05);
+			bool hasPI15 = has(PI15);
+			if (hasPI05 && hasPI15) {
+				min = -1;
+				max = 1;
+			}
+			else {
+				Real t0 = sin(beg()), t1 = sin(end());
+				if (hasPI05) {
+					min = (t0 < t1 ? t0 : t1);
+					max = 1;
+				}
+				else if (hasPI15) {
+					min = -1;
+					max = (t0 > t1 ? t0 : t1);
+				}
+				else {
+					min = (t0 < t1 ? t0 : t1);
+					max = (t0 > t1 ? t0 : t1);
+				}
+			}
 		}
 	};
 
